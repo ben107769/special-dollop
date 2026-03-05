@@ -54,15 +54,38 @@
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInScale 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        .photo-card:nth-child(1) { animation-delay: 0.1s; }
+        .photo-card:nth-child(2) { animation-delay: 0.2s; }
+        .photo-card:nth-child(3) { animation-delay: 0.3s; }
+        .photo-card:nth-child(4) { animation-delay: 0.4s; }
+        .photo-card:nth-child(5) { animation-delay: 0.5s; }
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         .photo-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) scale(1.02) rotate(1deg);
             box-shadow: 0 12px 30px rgba(0,0,0,0.2);
         }
         .photo-card img {
             width: 100%;
             height: auto;
             display: block;
+            transition: filter 0.4s ease, transform 0.4s ease;
+            filter: brightness(1) saturate(1);
+        }
+        .photo-card:hover img {
+            filter: brightness(1.1) saturate(1.2);
+            transform: scale(1.05);
         }
         section {
             margin: 3rem 0;
@@ -141,6 +164,23 @@
         .approfondimento p {
             color: #555;
             font-size: 0.95rem;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+            }
+            100% {
+                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            }
+        }
+        .photo-card.in-view {
+            animation: fadeInScale 0.6s ease-out forwards !important;
+        }
+        .photo-card.pulse {
+            animation: pulse 2s ease-in-out infinite;
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -257,6 +297,47 @@
                 button.textContent = testi[id] || 'Mostra di più';
             }
         }
+
+        // Animazioni per le immagini al scroll
+        const photoCards = document.querySelectorAll('.photo-card');
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+
+        photoCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // Effetto parallax al movimento del mouse sulle immagini
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+
+            photoCards.forEach(card => {
+                const img = card.querySelector('img');
+                const moveX = (mouseX - 0.5) * 20;
+                const moveY = (mouseY - 0.5) * 20;
+                
+                img.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+
+        // Reset dei transform al mouse leave
+        document.addEventListener('mouseleave', () => {
+            photoCards.forEach(card => {
+                const img = card.querySelector('img');
+                img.style.transform = 'scale(1.05) translate(0, 0)';
+            });
+        });
     </script>
 </body>
 </html>
