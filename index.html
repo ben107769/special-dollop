@@ -89,6 +89,59 @@
             font-size: 0.95rem;
             color: #666;
         }
+        .btn-container {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 500;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        .approfondimento {
+            display: none;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+        .approfondimento.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .approfondimento h3 {
+            color: #764ba2;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+        .approfondimento p {
+            color: #555;
+            font-size: 0.95rem;
+        }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,12 +175,31 @@
         <section>
             <h2>🕐 La sua vita</h2>
             <p>Maradona è cresciuto in un quartiere povero di Buenos Aires. La sua passione per il calcio si è manifestata sin da bambino, quando iniziò a giocare nelle strade del suo quartiere. La sua famiglia lo ha sempre supportato e ha iniziato a giocare professionalmente a 16 anni con l'Argentinos Juniors. Nonostante i difficili inizi, il talento naturale e la dedizione lo portarono rapidamente ai vertici del calcio mondiale.</p>
+            <div class="btn-container">
+                <button class="btn" onclick="toggleApprofondimento('vita')">Leggi di più</button>
+            </div>
+            <div class="approfondimento" id="vita">
+                <h3>Approfondimento: Infanzia e famiglia</h3>
+                <p>Diego Armando Maradona Franco è nato il 30 ottobre 1960 a Lanús, Buenos Aires. Proveniva da una famiglia numerosa: aveva quattro sorelle. Suo padre, Dalma, era un operaio che lavorava nei giacimenti di petrolio, mentre sua madre, Doña Tota, si dedicava alla famiglia. Nonostante le difficoltà economiche, la famiglia era molto unita e supportava il giovane Diego nel suo sogno calcistico.</p>
+                <p>Sin dall'infanzia, Diego mostrava un talento straordinario con il pallone. Iniziò a giocare negli street hockey e nei campetti di terra rossa del quartiere La Boca. A soli 15 anni, allenatore Julio Comesaña lo notò e lo fece entrare nelle giovanili dell'Argentinos Juniors, avviando la sua carriera professionale.</p>
+            </div>
         </section>
 
         <section>
             <h2>⚽ La sua carriera</h2>
             <p>Maradona ha giocato per diversi club importanti, tra cui il Boca Juniors in Argentina, il Barcellona in Spagna e il Napoli in Italia. Con il Napoli ha raggiunto l'apice della sua carriera, portando la squadra alla vittoria di due scudetti (1990 e 1991). Ha anche guidato la nazionale argentina alla vittoria della Coppa del Mondo nel 1986, con prestazioni memorabili come il "Gol del secolo" e la "Mano de Dios".</p>
             <p>La sua carriera è stata segnata da infortuni, problemi personali e controversie extracalcistiche, ma rimane uno dei più grandi giocatori della storia del calcio. Il suo impatto sul gioco è stato rivoluzionario: ha elevato il Napoli da una squadra di media classifica a una potenza calcistica europea.</p>
+            <div class="btn-container">
+                <button class="btn" onclick="toggleApprofondimento('carriera')">Scopri i dettagli</button>
+            </div>
+            <div class="approfondimento" id="carriera">
+                <h3>Approfondimento: I club più importanti</h3>
+                <p><strong>Argentinos Juniors (1976-1981):</strong> Esordio nei professionisti a soli 16 anni. Nel 1978 aiuta il club a raggiungere la finale della Coppa Libertadores.</p>
+                <p><strong>Boca Juniors (1981-1982):</strong> Solo una stagione, ma decisiva per la sua carriera. Vince la Coppa Libertadores 1981 e viene eletto miglior giocatore del torneo.</p>
+                <p><strong>Barcellona (1982-1984):</strong> Primo trasferimento europeo. Nonostante i successi individuali, gli infortuni limitano le sue prestazioni di squadra.</p>
+                <p><strong>Napoli (1984-1991):</strong> L'apogeo della sua carriera. Vince 2 Scudetti, 2 Coppe Italia e 1 Coppa UEFA. Diventa un eroe per i tifosi napoletani e trasforma completamente il calcio italiano.</p>
+                <p><strong>Siviglia (1992):</strong> Breve esperienza in Spagna prima del ritorno in Argentina.</p>
+            </div>
         </section>
 
         <section>
@@ -139,11 +211,52 @@
                 <li>Pallone d'Oro 2 volte</li>
                 <li>Miglior giocatore del Mondiale 1986</li>
             </ul>
+            <div class="btn-container">
+                <button class="btn" onclick="toggleApprofondimento('successi')">Gol memorabili</button>
+            </div>
+            <div class="approfondimento" id="successi">
+                <h3>Gol e momenti indimenticabili</h3>
+                <p><strong>La "Mano de Dios" (1986):</strong> Nel quarto di finale del Mondiale 1986 contro l'Inghilterra, Maradona segna in maniera irregolare con la mano. L'arbitro non vede il gesto e il gol viene convalidato. Maradona stesso ha ammesso di avere "un po' di aiuto dalla mano di Dio".</p>
+                <p><strong>Il "Gol del Secolo" (1986):</strong> Sempre nella stessa partita contro l'Inghilterra, 4 minuti dopo la "Mano de Dios", Maradona realizza il gol più bello della sua carriera. Parte dalla metà campo, straccia la difesa inglese e infila magistralmente il portiere.</p>
+                <p><strong>Il Napoli in Europa (1989):</strong> Maradona guida il Napoli alla vittoria della Coppa UEFA sconfiggendo il Stoccarda in finale. È uno dei momenti più gloriosi della storia del club partenopeo.</p>
+                <p><strong>Gli Scudetti napoletani (1990-1991):</strong> Due campionati italiani consecutivi dove Maradona è il trascinatore assoluto, con una serie di prestazioni sopra le righe che ancora oggi vengono ricordate dai tifosi del Napoli.</p>
+            </div>
         </section>
 
         <footer>
             <p>&copy; 2026 Diego Maradona Legacy - Una celebrazione della leggenda del calcio</p>
         </footer>
     </div>
+
+    <script>
+        function toggleApprofondimento(id) {
+            const element = document.getElementById(id);
+            const button = event.target;
+            
+            // Chiudi tutti gli altri approfondimenti
+            const allApprofondimenti = document.querySelectorAll('.approfondimento');
+            allApprofondimenti.forEach(app => {
+                if (app.id !== id) {
+                    app.classList.remove('active');
+                }
+            });
+            
+            // Toggle dell'elemento corrente
+            element.classList.toggle('active');
+            
+            // Cambia il testo del bottone
+            if (element.classList.contains('active')) {
+                button.textContent = 'Nascondi';
+            } else {
+                // Ripristina il testo originale in base all'ID
+                const testi = {
+                    'vita': 'Leggi di più',
+                    'carriera': 'Scopri i dettagli',
+                    'successi': 'Gol memorabili'
+                };
+                button.textContent = testi[id] || 'Mostra di più';
+            }
+        }
+    </script>
 </body>
 </html>
